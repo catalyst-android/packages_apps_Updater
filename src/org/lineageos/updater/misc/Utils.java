@@ -95,17 +95,8 @@ public class Utils {
     }
 
     public static boolean isCompatible(UpdateBaseInfo update) {
-        if (update.getVersion().compareTo(SystemProperties.get(Constants.PROP_BUILD_VERSION)) < 0) {
-            Log.d(TAG, update.getName() + " is older than current Android version");
-            return false;
-        }
-        if (!SystemProperties.getBoolean(Constants.PROP_UPDATER_ALLOW_DOWNGRADING, false) &&
-                update.getTimestamp() <= SystemProperties.getLong(Constants.PROP_BUILD_DATE, 0)) {
+        if (update.getTimestamp() <= SystemProperties.getLong(Constants.PROP_BUILD_DATE, 0)) {
             Log.d(TAG, update.getName() + " is older than/equal to the current build");
-            return false;
-        }
-        if (!update.getType().equalsIgnoreCase(SystemProperties.get(Constants.PROP_RELEASE_TYPE))) {
-            Log.d(TAG, update.getName() + " has type " + update.getType());
             return false;
         }
         return true;
@@ -151,35 +142,9 @@ public class Utils {
         return updates;
     }
 
-    public static String getArrowDownloadUrl(Context context) {
-        String device = SystemProperties.get(Constants.PROP_NEXT_DEVICE,
-                SystemProperties.get(Constants.PROP_DEVICE));
-        String arrowDownloadUrl = context.getString(R.string.arrow_download_url);
-
-        return arrowDownloadUrl.replace("{device}", device);
-    }
-
     public static String getServerURL(Context context) {
-        //String incrementalVersion = SystemProperties.get(Constants.PROP_BUILD_VERSION_INCREMENTAL);
-        String device = SystemProperties.get(Constants.PROP_NEXT_DEVICE,
-                SystemProperties.get(Constants.PROP_DEVICE));
-        String type = SystemProperties.get(Constants.PROP_RELEASE_TYPE).toLowerCase(Locale.ROOT);
-        String version = Constants.PROJECT_NAME_PREFIX
-                + SystemProperties.get(Constants.PROP_BUILD_VERSION).split("v")[1].toLowerCase(Locale.ROOT);
-        String ziptype = SystemProperties.get(Constants.PROP_ZIP_TYPE).toLowerCase(Locale.ROOT);
-
-        // Fallback to vanilla if prop was not found
-        if (ziptype == null) ziptype = "vanilla";
-
         String serverUrl = SystemProperties.get(Constants.PROP_UPDATER_URI);
-        if (serverUrl.trim().isEmpty()) {
-            serverUrl = context.getString(R.string.updater_server_url);
-        }
-
-        return serverUrl.replace("{device}", device)
-                .replace("{version}", version)
-                .replace("{type}", type)
-                .replace("{ziptype}", ziptype);
+        return serverUrl;
     }
 
     public static String getChangelogURL(Context context) {
