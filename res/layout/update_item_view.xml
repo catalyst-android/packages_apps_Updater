@@ -38,8 +38,7 @@
                 android:maxLines="1"
                 android:paddingBottom="8sp"
                 android:textColor="@color/inverted"
-                android:textSize="20sp"
-                tools:text="ArrowOS" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/build_date"

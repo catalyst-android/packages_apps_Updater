@@ -51,7 +51,7 @@ public final class Constants {
     public static final String PROP_NEXT_DEVICE = "ro.updater.next_device";
     public static final String PROP_ZIP_TYPE = "ro.catalyst.ziptype";
     public static final String PROP_UPDATER_ALLOW_DOWNGRADING = "lineage.updater.allow_downgrading";
-    public static final String PROP_UPDATER_URI = "catalyst.updater.uri";
+    public static final String PROP_UPDATER_URI = "ro.catalyst.updater.uri";
     public static final String PROP_BLOCK_UPDATER = "ro.block_updater";
 
     public static final String PREF_INSTALL_OLD_TIMESTAMP = "install_old_timestamp";
