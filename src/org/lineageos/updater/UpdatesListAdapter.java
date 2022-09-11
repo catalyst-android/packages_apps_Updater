@@ -321,7 +321,7 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
 
         if (Utils.isOnWifiOrEthernet(mActivity) || !warn) {
             mUpdaterController.startDownload(downloadId);
-            mActivity.startActivity(openArrowChangelog);
+            //mActivity.startActivity(openArrowChangelog);
             return;
         }
 
